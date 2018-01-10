@@ -1,0 +1,13 @@
+server:
+  port: 9898
+
+spring:
+  nats:
+    automatic-reconnect:
+      true
+    pedantic:
+      true
+    urls:
+      - nats://10.61.8.7:4222
+      - nats://10.61.8.10:4222
+      - nats://10.61.8.18:4222
