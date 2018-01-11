@@ -15,29 +15,20 @@
         <version>1.0</version>
     </parent>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>1.5.6.RELEASE</spring-boot.version>
-        <java.version>1.8</java.version>
-    </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
         <dependency>
             <groupId>com.anoyi</groupId>
@@ -69,6 +60,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <mainClass>net.ameizi.App</mainClass>
                     <executable>true</executable>
                 </configuration>
             </plugin>
@@ -87,13 +79,13 @@
                             <goal>sshexec</goal>
                         </goals>
                         <configuration>
-                            <fromFile>target/nats-example-2.0.jar</fromFile>
+                            <fromFile>target/spring-boot-nats-example-1.0.jar</fromFile>
                             <url>scp://root:jcmob123456@10.61.8.18/opt</url>
                             <commands>
                                 <!-- 杀死原来的进程 -->
-                                <command>pkill -f nats-example-2.0.jar</command>
-                                <!-- 重新启动nats-example-2.0.jar，程序的输出结果写到nohup.out文件中 -->
-                                <command>nohup java -jar /opt/nats-example-2.0.jar > /opt/nohup.out 2>&amp;1 &amp;
+                                <command>pkill -f spring-boot-nats-example-1.0.jar</command>
+                                <!-- 重新启动spring-boot-nats-example-1.0.jar，程序的输出结果写到nohup.out文件中 -->
+                                <command>nohup java -jar /opt/spring-boot-nats-example-1.0.jar > /opt/nohup.out 2>&amp;1 &amp;
                                 </command>
                             </commands>
                             <!-- 显示运行命令的输出结果 -->

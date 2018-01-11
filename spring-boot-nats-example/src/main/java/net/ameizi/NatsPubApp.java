@@ -25,7 +25,7 @@ public class NatsPubApp {
         };
 
         Timer timer = new Timer();
-        timer.schedule(task,1000,2000);
+        timer.schedule(task, 1000, 2000);
     }
 
 }

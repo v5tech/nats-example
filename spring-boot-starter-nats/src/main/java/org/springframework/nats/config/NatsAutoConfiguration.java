@@ -20,16 +20,16 @@ public class NatsAutoConfiguration {
     @ConditionalOnMissingBean(Nats.class)
     public Nats nats(NatsProperties properties) {
         NatsConnector natsConnector = new NatsConnector();
-        if (properties.getUrls().length > 0){
+        if (properties.getUrls().length > 0) {
             for (String url : properties.getUrls()) {
                 natsConnector.addHost(url);
             }
-        }else {
+        } else {
             natsConnector.addHost(DEFAULT_NATS_HOST);
         }
         natsConnector.pedantic(properties.isPedantic());
         natsConnector.automaticReconnect(properties.isAutomaticReconnect());
-        natsConnector.reconnectWaitTime(properties.getReconnectWaitTime(),TimeUnit.MILLISECONDS);
+        natsConnector.reconnectWaitTime(properties.getReconnectWaitTime(), TimeUnit.MILLISECONDS);
         natsConnector.idleTimeout(properties.getIdleTimeout());
         natsConnector.maxFrameSize(properties.getMaxFrameSize());
         natsConnector.pingInterval(properties.getPingInterval());

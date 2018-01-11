@@ -20,6 +20,12 @@ http://10.61.8.10:8222
 
 http://10.61.8.18:8222
 
+![](Screenshots/20180111103332.png)
+![](Screenshots/20180111103301.png)
+![](Screenshots/20180111103310.png)
+![](Screenshots/20180111103321.png)
+
+
 ## Linux远程部署
 
 ```bash
@@ -77,6 +83,12 @@ mvn package
 
 Process finished with exit code 0
 ```
+
+## 程序运行控制台
+
+![](Screenshots/20180111104002.png)
+
+程序运行起来首先订阅了`some.nats.subject`,然后每隔5秒向`some.nats.subject`发布消息。从日志中可以看出`NATS`会尝试自动重连.
 
 ## 参考文章
 
